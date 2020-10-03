@@ -114,21 +114,21 @@
 			<ul class="icons">
 			
 			<li><a href="https://github.com/SamuelAlanBenitezAlonso" class="icon brands fa-github"><span
-						class="label">Github</span> Samuel Alan Benítez Alonso</a></li>
+					class="label">Github</span> Samuel Alan Benítez Alonso</a></li>
 						<br>
 
 				
-				<li><a href="https://github.com/SalvadorMoradoQuiroz" class="icon brands fa-github"><span
-						class="label">Github</span> Salvador Morado Quiroz</a></li>
+			<li><a href="https://github.com/SalvadorMoradoQuiroz" class="icon brands fa-github"><span
+					class="label">Github</span> Salvador Morado Quiroz</a></li>
 						<br>
 						
-				<li><a href="https://github.com/VicenteAguileraPerez" class="icon brands fa-github"><span
+			<li><a href="https://github.com/VicenteAguileraPerez" class="icon brands fa-github"><span
 					class="label">Github</span> Vicente Aguilera Perez</a></li>
-					<br>
+					    <br>
 					
-				<li><a href="https://github.com/Pulido1307" class="icon brands fa-github"><span
-						class="label">Github</span> Antonio Pulido Virrueta</a></li>
-				
+			<li><a href="https://github.com/Pulido1307" class="icon brands fa-github"><span
+					class="label">Github</span> Antonio Pulido Virrueta</a></li>
+					   <br>
 			</ul>
 					
 			<p class = "copyright">
