@@ -2,6 +2,8 @@
 <!--
 	Modificado por Polar<3
 -->
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONObject"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 
 <%@page import="java.util.Map"%>
@@ -47,7 +49,7 @@
 						<h4>Alumnos Registrados</h4>
 						<div class="table-responsive">
 							<%
-							/* JSONArray array = new JSONArray();
+							JSONArray array = new JSONArray();
 							JSONObject obj = new JSONObject();
 							obj.put("Nombre", "Antonio");
 							obj.put("Apellido", "Pulido Virrueta");
@@ -58,8 +60,15 @@
 							obj2.put("Apellido", "Morado");
 							obj2.put("Email", "salvador2000@outlook.es");
 							obj2.put("Carrera", "Ing.En Sistemas Computacionales");
+							JSONObject obj3 = new JSONObject();
+							obj3.put("Nombre", "Vicente");
+							obj3.put("Apellido", "Agulilera");
+							obj3.put("Email", "salvador2000@outlook.es");
+							obj3.put("Carrera", "Ing.En Sistemas Computacionales");
 							array.put(obj);
-							array.put(obj2);*/
+							array.put(obj2);
+							array.put(obj3);
+							
 							%>
 
 							<table id="table_students"
@@ -71,21 +80,19 @@
 										<th>Apellido</th>
 										<th>Email</th>
 										<th>Número de telefono</th>
-
 									</tr>
 								</thead>
-
-								<tbody>
-									<%
-										/*for (int i = 0; i < array.length(); i++) {
-										out.println("<th scope=row>"+array.getJSONObject(i).getString("Nombre") + "</th>");
+								
+										<%
+										for (int i = 0; i < array.length(); i++) {
+										out.println("<tr>");
+										out.println("<th>"+array.getJSONObject(i).getString("Nombre") + "</th>");
 										out.println("<td>" + array.getJSONObject(i).getString("Apellido") + "</td>");
 										out.println("<td>" + array.getJSONObject(i).getString("Email") + "</td>");
 										out.println("<td>" + array.getJSONObject(i).getString("Carrera") + "</td>");
-									}*/
+										out.println("</tr>");
+									}
 									%>
-								</tbody>
-
 							</table>
 						</div>
 
