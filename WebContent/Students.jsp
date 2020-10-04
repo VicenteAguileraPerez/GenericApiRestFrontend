@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <!--
 -->
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Param"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
@@ -59,28 +60,35 @@
 	
 									<thead>
 										<tr>
-											<th>Control number</th>
+											<th>Number</th>
 											<th>Name</th>
 											<th>Last name</th>
 											<th>Email</th>
 											<th>Career</th>
 										</tr>
+										
 									</thead>
 										<%
-											String btnUpdate = "<button type='submit' value='submit'>"+"Update"+"</button>";
-											String btnDelete = "<button type='submit' value='submit'>"+"Delete"+"</button>";
+											//String btnUpdate =  <button type='submit'></button>";
+											String btnDetails = "<button type='submit' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#confirmModal'>"+"Details"+"</button>";
+
+											
 											for (int i = 0; i < array.length(); i++)
 											{
-											out.println("<form>");
+											String path = request.getContextPath();
+											out.println("<form action= "+path+"/Details.jsp>");
+											
 											out.println("<tr>");
-											out.println("<th>"+array.getJSONObject(i).getString("control-number") + "</th>");
-											out.println("<th>"+array.getJSONObject(i).getString("name") + "</th>");
-											out.println("<td>" + array.getJSONObject(i).getString("last") + "</td>");
-											out.println("<td>" + array.getJSONObject(i).getString("email") + "</td>");
-											out.println("<td>" + array.getJSONObject(i).getString("career") + "</td>");
-											out.println("<td>" + btnUpdate +"</td>");
-											out.println("<td>" + btnDelete +"</td>");
+											out.println("<th> <input name='control-number' readonly='readonly' value="+array.getJSONObject(i).getString("control-number") + "> </th>");
+											out.println("<th>" +array.getJSONObject(i).getString("control-number") + "</th>");
+											out.println("<th>" +array.getJSONObject(i).getString("name") + "</th>");
+											out.println("<th>" +array.getJSONObject(i).getString("last") + "</th>");
+											out.println("<th>" +array.getJSONObject(i).getString("email") + "</th>");
+											out.println("<th>" +array.getJSONObject(i).getString("career") + "</th>");
+											
+											out.println("<td>" + btnDetails +"</td>");
 											out.println("</tr>");
+											
 											out.println("</form>");
 											}
 										%>
@@ -154,7 +162,7 @@
 		crossorigin="anonymous"></script>
 </body>
 
-<!-- Modal -->
+<!-- Modal ADD-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static"
 	data-keyboard="false" tabindex="-1"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true" >
@@ -168,10 +176,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<%=request.getContextPath()%>/studentController?page=create" method="get">
+				<form action="<%=request.getContextPath()%>/studentController" method="post">
 				
-					<label for="controlNombre">Control Number:</label> <input type="number" maxlength="50" placeholder="Enter control number"
-						class="form-control" id="inputNumberControl" aria-describedby="fieldNumberControl" name="control number" 
+					<label for="controlNumber">Control Number:</label> <input type="number" maxlength="8" placeholder="Enter control number"
+						class="form-control" id="inputNumberControl" aria-describedby="fieldNumberControl" name="controlNumber" 
 						oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 					<small id="controNumberlHelp" class="form-text text-muted"></small>
 				
@@ -181,21 +189,21 @@
 					 
 					<label
 						for="lastName">Last Name:</label> <input type="text" maxlength="80" placeholder = "Enter last name"
-						class="form-control" id="inputLastName" name = "last name"
+						class="form-control" id="inputLastName" name = "lastName"
 						aria-describedby="fieldLastName" required> <small id="lastNameHelp"
 						class="form-text text-muted"></small> 
 									
 					<label for="selectCareer">Career:</label>
     					<select class="form-control" id="selectCareer" name = "career">
     					  <option>Select an option...</option>
-      					  <option>Ing.En Sistemas Computacionales</option>
-					      <option>Ing.Civil</option>
-					      <option>Ing.En Mecatronica</option>
-					      <option>Ing.En Electronica</option>
-					      <option>Ing.En Administracion</option>
-					      <option>Ing.En Industrias Alimentarias</option>
-					      <option>Ing.Mecanica</option>
-					      <option>Ing.En Industrial</option>
+      					  <option value="ISC">Ing.En Sistemas Computacionales</option>
+					      <option value="ICI">Ing.Civil</option>
+					      <option value="IME">Ing.En Mecatronica</option>
+					      <option value="IEL">Ing.En Electronica</option>
+					      <option value="IAM">Ing.En Administracion</option>
+					      <option value="IIA">Ing.En Industrias Alimentarias</option>
+					      <option value="IMC">Ing.Mecanica</option>
+					      <option value="IIN">Ing.En Industrial</option>
     				</select>	
     				
     				
@@ -205,7 +213,7 @@
 					<small id="ageHelp" ></small> 
 					
 					<label for="birthday">Birthday:</label><br>					
-					<input type="date" id="inputBirthday" name="trip-start" max="2039-01-01"><br>
+					<input type="date" id="inputBirthday" name="birthday" max="2039-01-01"><br>
 					
 					<label
 						for="address">Address:</label> <input type="text" maxlength="150" placeholder = "Enter address"
@@ -221,19 +229,19 @@
 						
 					<label
 						for="state">State:</label> <input type="text" placeholder = "Enter state"
-						class="form-control" id="inputState"
+						class="form-control" id="inputState" name="state"
 						aria-describedby="stateHelp" required> <small id="stateHelp"
 						class="form-text text-muted"></small>	 
 															
 					<label
-						for="inputEmail">Email:</label> <input type="email" placeholder = "Enter email"
-						class="form-control" id="inputEmail"
+						for="email">Email:</label> <input type="email" placeholder = "Enter email"
+						class="form-control" id="inputEmail" name="email"
 						aria-describedby="emailHelp" required> <small id="emailHelp"
 						class="form-text text-muted"></small>
 						
 						
 					<label for="notes">Notes:</label>
-    				<textarea class="form-control" id="inputNotes" rows="5"></textarea>
+    				<textarea class="form-control" id="inputNotes" rows="5" name="notes"></textarea>
 					   				    			
     				<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -245,4 +253,5 @@
 		</div>
 	</div>
 </div>
+
 </html>

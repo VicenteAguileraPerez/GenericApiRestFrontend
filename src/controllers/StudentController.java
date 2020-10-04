@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
 
 
 
@@ -24,19 +23,12 @@ public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public StudentController() {}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String page = request.getParameter("page");
 		System.out.println(page);
 		if(page!=null && page.equals("create"))
 		{
-			/*String controlNumber = request.getParameter("");
-			String name = request.getParameter("");
-			String lastName = request.getParameter("");
-			String career = request.getParameter("");
-			String email = request.getParameter("");*/
-			String name = "Salvador";
-			String body = "{\"name\":\""+name+"\"}";
 			try 
 			{
 					URL url = new URL("http://localhost:8081/academic/students?page=student&control-number=17040009");
@@ -47,21 +39,9 @@ public class StudentController extends HttpServlet {
 					if(con.getResponseCode() != 200)
 					{
 						//unchecked
-						
 						throw new RuntimeException("Failed: HTTP error code: "+ con.getResponseCode());
 					}
 					System.out.println(con.getResponseCode());
-					
-					/*con.setDoOutput(true);
-					con.setDoInput(true);
-					con.setUseCaches(false);
-									
-					OutputStream os = con.getOutputStream();
-					
-					System.out.println(body);
-					
-					byte[] input = body.getBytes("utf-8");
-					os.write(input, 0, input.length);*/
 					
 					BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 					String temp = null;
@@ -95,15 +75,45 @@ public class StudentController extends HttpServlet {
 		{
 			System.out.println("No found");
 		}
-	}
+	}*/
 	
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String page = request.getParameter("page");
 		System.out.println(page);
-		if(page!=null && page.equals("delete"))
+		
+		if(page!=null && page.startsWith("update"))
 		{
-			String body = "{\"birthday\":\"27/09/99\",\"control-number\":\"17040023\",\"career\":\"ENF\",\"address\":\"Hotencias 180\",\"notes\":\"Esta es mi nota\",\"last\":\"Mendoza Carrillo\",\"city\":\"Uruapan\",\"name\":\"Paulina\",\"state\":\"Michoacan\",\"age\":\"21\",\"email\":\"paulina@hotmail.com\"}";
+			System.out.println("Page...."+page);
+		}
+		else if(page!=null && page.equals("delete"))
+		{
+			
+		}
+		else
+		{
+			System.out.println("No found. ");
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{		
+			String[] birthday = request.getParameter("birthday").split("-");
+			String date = birthday[2]+"/"+birthday[1]+"/"+birthday[0].substring(1,3);
+			System.out.println(date);
+			String controlNumber = request.getParameter("controlNumber");
+			String career = request.getParameter("career");
+			String address = request.getParameter("address");
+			String notes = request.getParameter("notes");
+			String last = request.getParameter("lastName");
+			String city = request.getParameter("city");
+			String name = request.getParameter("name");
+			String state = request.getParameter("state");
+			String age = request.getParameter("age");
+			String email = request.getParameter("email");
+
+			String body = "{\"birthday\":\""+date+"\",\"control-number\":\""+controlNumber+"\",\"career\":\""+career+"\",\"address\":\""+address+"\",\"notes\":\""+notes+"\",\"last\":\""+last+"\",\"city\":\""+city+"\",\"name\":\""+name+"\",\"state\":\""+state+"\",\"age\":\""+age+"\",\"email\":\""+email+"\"}";
+			System.out.println(body);
 			try {				
 				URL url = new URL("http://localhost:8081/academic/students");
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -130,7 +140,7 @@ public class StudentController extends HttpServlet {
 					result=data;
 				}
 			
-				response.getWriter().println("<h2>Great news your house is "+result+" meters</h2>");
+				response.getWriter().println("<h2>A new student has been added.</h2>");
 				
 				conn.disconnect();
 				
@@ -150,10 +160,6 @@ public class StudentController extends HttpServlet {
 			catch (Exception e) {
 				System.out.println("It crashed");
 			}	
-		}
-		else
-		{
-			System.out.println("No found");
-		}
 	}
+	
 }
