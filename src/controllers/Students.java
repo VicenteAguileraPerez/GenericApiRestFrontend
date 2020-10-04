@@ -136,7 +136,6 @@ public class Students extends HttpServlet
 			System.out.println("It has a mistake");
 	        
 			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE);
-			
 		}
 		
 	}

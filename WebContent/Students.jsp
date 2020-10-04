@@ -70,7 +70,7 @@
 											for (int i = 0; i < array.length(); i++)
 											{
 											out.println("<tr>");
-											out.println("<th>"+array.getJSONObject(i).getString("control_number") + "</th>");
+											out.println("<th>"+array.getJSONObject(i).getString("control-number") + "</th>");
 											out.println("<th>"+array.getJSONObject(i).getString("name") + "</th>");
 											out.println("<td>" + array.getJSONObject(i).getString("last") + "</td>");
 											out.println("<td>" + array.getJSONObject(i).getString("email") + "</td>");
@@ -85,7 +85,7 @@
 				</div>
 				<br>
 				
-					<button type="submit" value="" class="btn btn-primary btn-lg"
+					<button type="button" value="" class="btn btn-primary btn-lg"
 					data-toggle="modal" data-target="#staticBackdrop">Add student
 					</button>
 				</header>
@@ -162,9 +162,9 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form action="<%=request.getContextPath()%>/studentController?page=create" method="get">
 					<label for="nombre">Control number:</label> <input type="number" maxlength="10" placeholder="Ingrese Número de Control"
-						class="form-control" id="inputNumberControl" aria-describedby="campoNumeroControl" 
+						class="form-control" id="inputNumberControl" aria-describedby="campoNumeroControl" name="nombre"
 						oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 					<small id="numeroControlHelp" class="form-text text-muted"></small>
 				
@@ -228,13 +228,13 @@
 					<label for="notas">Notes:</label>
     				<textarea class="form-control" id="inputNotas" rows="5"></textarea>
 					   				    			
-    				
+    				<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Add Student</button>
+					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary">Agregar Alumno</button>
-			</div>
+			
 		</div>
 	</div>
 </div>
