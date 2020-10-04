@@ -20,7 +20,7 @@ public class Prueba
 		{
 			if(page!=null)
 			{
-				URL url = new URL("http://localhost:8081/GenericApiRestFrontend/students?page="+page);
+				URL url = new URL("http://localhost:8081/academic/students?page="+page);
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 				con.setRequestMethod("GET");
 				con.addRequestProperty("Accept", "application/json");

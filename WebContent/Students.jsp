@@ -67,15 +67,21 @@
 										</tr>
 									</thead>
 										<%
+											String btnUpdate = "<button type='submit' value='submit'>"+"Update"+"</button>";
+											String btnDelete = "<button type='submit' value='submit'>"+"Delete"+"</button>";
 											for (int i = 0; i < array.length(); i++)
 											{
+											out.println("<form>");
 											out.println("<tr>");
 											out.println("<th>"+array.getJSONObject(i).getString("control-number") + "</th>");
 											out.println("<th>"+array.getJSONObject(i).getString("name") + "</th>");
 											out.println("<td>" + array.getJSONObject(i).getString("last") + "</td>");
 											out.println("<td>" + array.getJSONObject(i).getString("email") + "</td>");
 											out.println("<td>" + array.getJSONObject(i).getString("career") + "</td>");
+											out.println("<td>" + btnUpdate +"</td>");
+											out.println("<td>" + btnDelete +"</td>");
 											out.println("</tr>");
+											out.println("</form>");
 											}
 										%>
 								</table>
