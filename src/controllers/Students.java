@@ -27,13 +27,11 @@ public class Students extends HttpServlet
 	{
 		
 		String page = request.getParameter(StaticHelper.PAGE);
+		System.out.println(page);
 		String idStudent = request.getParameter(StaticHelper.ID);
 		response.setContentType("text/json");
 		if(page!=null && page.equals(StaticHelper.STUDENTS) && idStudent==null)
 		{
-			
-			
-			
 			try
 			{
 				JSONArray jsonArray = files.readDataJson();
@@ -96,18 +94,14 @@ public class Students extends HttpServlet
 		{
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			//getServletContext().getRequestDispatcher("/notFound.jsp").forward(request, response);
-			System.out.println("Error");
+			System.out.println("Error iusdfvinibfj");
 			//response.setContentType("text/html");
 			//response.getWriter().println("<h1>Hello</h1>");
 		}
 		
-		
 		// obtener todos los estudiantes
-		
-		
-
-		
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//No id wee need to send all the data and return id
 		//200 o 500
@@ -117,7 +111,6 @@ public class Students extends HttpServlet
 			
 			System.out.println(data);
 			response.setContentType("text/html");
-		
 		
 			JSONHelper jsonHelper = new JSONHelper();
 			JSONObject jsonObject = jsonHelper.getNewJsonObject(data);
@@ -157,7 +150,6 @@ public class Students extends HttpServlet
 			System.out.println(data);
 			response.setContentType("text/html");
 		
-		
 			JSONHelper jsonHelper = new JSONHelper();
 			JSONObject jsonObject = jsonHelper.getNewJsonObject(data);
 			System.out.println(jsonObject);
@@ -175,11 +167,8 @@ public class Students extends HttpServlet
 		}
 		catch(Exception e) 
 		{
-			
 			System.out.println("It has a mistake");
-	        
 			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE);
-			
 		}
 		
 	}
