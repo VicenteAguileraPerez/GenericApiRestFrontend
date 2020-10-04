@@ -169,70 +169,71 @@
 			</div>
 			<div class="modal-body">
 				<form action="<%=request.getContextPath()%>/studentController?page=create" method="get">
-					<label for="nombre">Control number:</label> <input type="number" maxlength="10" placeholder="Ingrese Número de Control"
-						class="form-control" id="inputNumberControl" aria-describedby="campoNumeroControl" name="nombre"
-						oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
-					<small id="numeroControlHelp" class="form-text text-muted"></small>
 				
-					<label for="nombre">Name:</label> <input type="text" maxlength="50" placeholder = "Ingrese Nombre"
-						class="form-control" id="inputNombre" aria-describedby="campoNombre" required>
-					<small id="nombreHelp" class="form-text text-muted"></small>
+					<label for="controlNombre">Control Number:</label> <input type="number" maxlength="50" placeholder="Enter control number"
+						class="form-control" id="inputNumberControl" aria-describedby="fieldNumberControl" name="control number" 
+						oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+					<small id="controNumberlHelp" class="form-text text-muted"></small>
+				
+					<label for="name">Name:</label> <input type="text" maxlength="50" placeholder = "Enter name"
+						class="form-control" id="inputName" aria-describedby="fieldName" name = "name" required>
+					<small id="nameHelp" class="form-text text-muted"></small>
 					 
 					<label
-						for="apellido">Last name:</label> <input type="text" maxlength="80" placeholder = "Ingresa Apellido"
-						class="form-control" id="inputApellido"
-						aria-describedby="campoApellido" required> <small id="apellidoHelp"
+						for="lastName">Last Name:</label> <input type="text" maxlength="80" placeholder = "Enter last name"
+						class="form-control" id="inputLastName" name = "last name"
+						aria-describedby="fieldLastName" required> <small id="lastNameHelp"
 						class="form-text text-muted"></small> 
 									
-					<label for="selectCarreras">Career:</label>
-    					<select class="form-control" id="selectCarrera">
+					<label for="selectCareer">Career:</label>
+    					<select class="form-control" id="selectCareer" name = "career">
     					  <option>Select an option...</option>
       					  <option>Ing.En Sistemas Computacionales</option>
 					      <option>Ing.Civil</option>
-					      <option>Ing.En Mecatrónica</option>
-					      <option>Ing.En Electrónica</option>
-					      <option>Ing.En Administración</option>
-					      <option>Ing.En Industrías Alimentarias</option>
-					      <option>Ing.Mecánica</option>
+					      <option>Ing.En Mecatronica</option>
+					      <option>Ing.En Electronica</option>
+					      <option>Ing.En Administracion</option>
+					      <option>Ing.En Industrias Alimentarias</option>
+					      <option>Ing.Mecanica</option>
 					      <option>Ing.En Industrial</option>
     				</select>	
     				
     				
-    				<label for="edad">age:</label> <input type="number" maxlength="3" placeholder="Ingrese Edad"
-						class="form-control" id="inputEdad" aria-describedby="campoEdad" 
+    				<label for="age">Age:</label> <input type="number" maxlength="3" placeholder="Enter age"
+						class="form-control" id="inputAge" aria-describedby="fieldAge" name = "age" 
 						oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
-					<small id="edadHelp" ></small> 
+					<small id="ageHelp" ></small> 
 					
-					<label for="fechaNacimiento">Birthday:</label><br>					
-					<input type="date" id="inputFechaNacimiento" name="trip-start" max="2039-01-01"><br>
+					<label for="birthday">Birthday:</label><br>					
+					<input type="date" id="inputBirthday" name="trip-start" max="2039-01-01"><br>
 					
 					<label
-						for="direccion">Address:</label> <input type="text" maxlength="150" placeholder = "Ingresa Dirección"
-						class="form-control" id="inputDireccion"
-						aria-describedby="apellidoHelp" required> <small id="direccionHelp"
+						for="address">Address:</label> <input type="text" maxlength="150" placeholder = "Enter address"
+						class="form-control" id="inputAddress" name = "address"
+						aria-describedby="addressHelp" required> <small id="addressHelp"
 						class="form-text text-muted"></small> 
 						
 					<label
-						for="ciudad">City:</label> <input type="text" placeholder = "Ingresa Ciudad"
-						class="form-control" id="inputCiudad"
-						aria-describedby="apellidoHelp" required> <small id="ciudadHelp"
+						for="city">City:</label> <input type="text" placeholder = "Enter city"
+						class="form-control" id="inputCiudad" name = "city"
+						aria-describedby="cityHelp" required> <small id="cityHelp"
 						class="form-text text-muted"></small>
 						
 					<label
-						for="estado">State:</label> <input type="text" placeholder = "Ingresa Estado"
-						class="form-control" id="inputEstado"
-						aria-describedby="estadoHelp" required> <small id="estadoHelp"
+						for="state">State:</label> <input type="text" placeholder = "Enter state"
+						class="form-control" id="inputState"
+						aria-describedby="stateHelp" required> <small id="stateHelp"
 						class="form-text text-muted"></small>	 
 															
 					<label
-						for="inputEmail">Email:</label> <input type="email" placeholder = "Ingrese Correo Electronico"
+						for="inputEmail">Email:</label> <input type="email" placeholder = "Enter email"
 						class="form-control" id="inputEmail"
 						aria-describedby="emailHelp" required> <small id="emailHelp"
 						class="form-text text-muted"></small>
 						
 						
-					<label for="notas">Notes:</label>
-    				<textarea class="form-control" id="inputNotas" rows="5"></textarea>
+					<label for="notes">Notes:</label>
+    				<textarea class="form-control" id="inputNotes" rows="5"></textarea>
 					   				    			
     				<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
