@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONObject"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ page import="controllers.Prueba" %>
+
 
 <%@page import="java.util.Map"%>
 <html>
@@ -43,73 +47,73 @@
 													
 								<div class="container"> <!-- Inicio class Container -->
 								
-																	
-									<form action="<%=request.getContextPath()%>/studentController?page=update&idStudent="<%=request.getParameter("control-number") %> method="get">
+									<%
+										Prueba p = new Prueba();
+										JSONArray array = p.readOne("student", request.getParameter("control-number"));
+										JSONObject obj = array.getJSONObject(0);
+										//String name = obj.get("control-number").toString();
+										//out.print(obj);
+									%>							
+									<form action="<%=request.getContextPath()%>/studentController?page=update" method="post">
 	
 									<label for="controlNombre">Control Number:</label> <input type="number" maxlength="50" placeholder="Enter control number"
 										class="form-control" id="updateNumberControl" aria-describedby="fieldNumberControl" name="updateControlNumber" 
-										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="<%=obj.get("control-number").toString()%>"></input>
 									<small id="controNumberlHelp" class="form-text text-muted"></small>
 								
 									<label for="name">Name:</label> <input type="text" maxlength="50" placeholder = "Enter name"
-										class="form-control" id="updateName" aria-describedby="fieldName" name = "updateName" required>
+										class="form-control" id="updateName" aria-describedby="fieldName" name = "updateName" value="<%=obj.get("name").toString()%>">
 									<small id="nameHelp" class="form-text text-muted"></small>
 									 
 									<label
 										for="lastName">Last Name:</label> <input type="text" maxlength="80" placeholder = "Enter last name"
 										class="form-control" id="updateName" name = "updatLastName"
-										aria-describedby="fieldLastName" required> <small id="lastNameHelp"
+										aria-describedby="fieldLastName" required value="<%=obj.get("last").toString()%>"> <small id="lastNameHelp"
 										class="form-text text-muted"></small> 
-													
-									<label for="selectCareer">Career:</label>
-				    					<select class="form-control" id="updaeteSelectCareer" name = "career">
-				    					  <option>Select an option...</option>
-				      					  <option>Ing.En Sistemas Computacionales</option>
-									      <option>Ing.Civil</option>
-									      <option>Ing.En Mecatronica</option>
-									      <option>Ing.En Electronica</option>
-									      <option>Ing.En Administracion</option>
-									      <option>Ing.En Industrias Alimentarias</option>
-									      <option>Ing.Mecanica</option>
-									      <option>Ing.En Industrial</option>
-				    				</select>	
+				    				
+				    				<label for="career">Career:</label> <input type="text" maxlength="3" placeholder="Enter career"
+										class="form-control" id="updateCareer" aria-describedby="fielCareer" name = "updateCareer" 
+										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="<%=obj.get("career").toString()%>">
+									<small id="ageHelp" ></small> 	
 				    				
 				    				
 				    				<label for="age">Age:</label> <input type="number" maxlength="3" placeholder="Enter age"
 										class="form-control" id="updateAge" aria-describedby="fieldAge" name = "updateAge" 
-										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="<%=obj.get("age").toString()%>">
 									<small id="ageHelp" ></small> 
 									
-									<label for="birthday">Birthday:</label><br>					
-									<input type="date" id="updateBirthday" name="updateBirthday" max="2039-01-01" ><br>
+									<label for="birthday">Birthday:</label> <input type="text" maxlength="8" placeholder="Enter birthday"
+										class="form-control" id="updateBirthday" aria-describedby="fielBirthday" name = "updateBirthday" 
+										oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required value="<%=obj.get("birthday").toString()%>">
+									<small id="ageHelp" ></small> 
 									
 									<label
 										for="address">Address:</label> <input type="text" maxlength="150" placeholder = "Enter address"
 										class="form-control" id="updateAddress" name = "updateAddress"
-										aria-describedby="addressHelp" required> <small id="addressHelp"
+										aria-describedby="addressHelp" required value="<%=obj.get("address").toString()%>"> <small id="addressHelp"
 										class="form-text text-muted"></small> 
 										
 									<label
 										for="city">City:</label> <input type="text" placeholder = "Enter city"
 										class="form-control" id="updateCity" name = "updateCity"
-										aria-describedby="cityHelp" required> <small id="cityHelp"
+										aria-describedby="cityHelp" required value="<%=obj.get("city").toString()%>"> <small id="cityHelp"
 										class="form-text text-muted"></small>
 										
 									<label
 										for="state">State:</label> <input type="text" placeholder = "Enter state"
 										class="form-control" id="updateState" name="updateState"
-										aria-describedby="stateHelp" required> <small id="stateHelp"
+										aria-describedby="stateHelp" required value="<%=obj.get("state").toString()%>"> <small id="stateHelp"
 										class="form-text text-muted"></small>	 
 																			
 									<label
 										for="inputEmail">Email:</label> <input type="email" placeholder = "Enter email"
 										class="form-control" id="updateEmail" name ="updateEmail"
-										aria-describedby="emailHelp" required> <small id="emailHelp"
+										aria-describedby="emailHelp" required value="<%=obj.get("email").toString()%>"> <small id="emailHelp"
 										class="form-text text-muted"></small>
 										
 										
 									<label for="notes">Notes:</label>
-				    				<textarea class="form-control" id="updateNotes" rows="5" name ="notes"></textarea>
+				    				<textarea class="form-control" id="updateNotes" rows="5" name ="notes"><%=obj.get("notes").toString()%></textarea>
 									   				    			
 				    				<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
@@ -180,7 +184,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-		<form action="<%=request.getContextPath()%>/studentController?page=delete&idStudent="<%=request.getParameter("control-number") %> method="get">
+		<form action="<%=request.getContextPath()%>/studentController" method="get">
+			<input type="hidden" name="page" value="delete">
+			<input type="hidden" name="idStudent" value="<%=request.getParameter("control-number")%>">
         	<button type="submit" class="btn btn-primary">Yes</button>
         </form>
       </div>

@@ -70,26 +70,27 @@
 									</thead>
 										<%
 											//String btnUpdate =  <button type='submit'></button>";
-											String btnDetails = "<button type='submit' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#confirmModal'>"+"Details"+"</button>";
-
-											
-											for (int i = 0; i < array.length(); i++)
+											if(array!=null)
 											{
-											String path = request.getContextPath();
-											out.println("<form action= "+path+"/Details.jsp>");
-											
-											out.println("<tr>");
-											out.println("<th> <input name='control-number' readonly='readonly' value="+array.getJSONObject(i).getString("control-number") + "> </th>");
-											out.println("<th>" +array.getJSONObject(i).getString("control-number") + "</th>");
-											out.println("<th>" +array.getJSONObject(i).getString("name") + "</th>");
-											out.println("<th>" +array.getJSONObject(i).getString("last") + "</th>");
-											out.println("<th>" +array.getJSONObject(i).getString("email") + "</th>");
-											out.println("<th>" +array.getJSONObject(i).getString("career") + "</th>");
-											
-											out.println("<td>" + btnDetails +"</td>");
-											out.println("</tr>");
-											
-											out.println("</form>");
+												String btnDetails = "<button type='submit' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#confirmModal'>"+"Details"+"</button>";
+												for (int i = 0; i < array.length(); i++)
+												{
+												String path = request.getContextPath();
+												out.println("<form action= "+path+"/Details.jsp>");
+												
+												out.println("<tr>");
+												out.println("<th> <input name='control-number' readonly='readonly' value="+array.getJSONObject(i).getString("control-number") + "> </th>");
+												out.println("<th>" +array.getJSONObject(i).getString("control-number") + "</th>");
+												out.println("<th>" +array.getJSONObject(i).getString("name") + "</th>");
+												out.println("<th>" +array.getJSONObject(i).getString("last") + "</th>");
+												out.println("<th>" +array.getJSONObject(i).getString("email") + "</th>");
+												out.println("<th>" +array.getJSONObject(i).getString("career") + "</th>");
+												
+												out.println("<td>" + btnDetails +"</td>");
+												out.println("</tr>");
+												
+												out.println("</form>");
+												}
 											}
 										%>
 								</table>
@@ -176,7 +177,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<%=request.getContextPath()%>/studentController" method="post">
+				<form action="<%=request.getContextPath()%>/studentController?page=create" method="post">
 				
 					<label for="controlNumber">Control Number:</label> <input type="number" maxlength="8" placeholder="Enter control number"
 						class="form-control" id="inputNumberControl" aria-describedby="fieldNumberControl" name="controlNumber" 
